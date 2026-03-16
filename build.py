@@ -45,23 +45,17 @@ def build():
     if DIR_DIST.exists():
         shutil.rmtree(DIR_DIST)
 
-    # Static files:
-    style = (DIR_SRC / "main.css").read_text("utf-8")
-    script = (DIR_SRC / "main.js").read_text("utf-8")
-
     # Data:
     episodes = read_episodes()
 
     # Templates:
     env = Environment(loader=FileSystemLoader(DIR_TEMPLATES))
-    var = {
+    shared = {
         "episodes": [ep["day"] for ep in episodes],
-        "style": style,
-        "script": script,
     }
 
     # Render index:
-    index_html = env.get_template("index.html").render(**var)
+    index_html = env.get_template("index.html").render(**shared)
     write(DIR_DIST / "index.html", index_html)
 
     # Render episodes:
@@ -70,7 +64,7 @@ def build():
         next_day = episodes[i + 1]["day"] if i < len(episodes) - 1 else None
 
         episode_html = env.get_template("episode.html").render(
-            **var,
+            **shared,
             day=episode["day"],
             content=episode["content"],
             prev=prev_day,

@@ -23,7 +23,7 @@ html {
 
 i.arrow-left  { mask-image: {{ "static/arrow_left.svg" | ibase64('image/svg+xml') }}; }
 i.arrow-right { mask-image: {{ "static/arrow_right.svg" | ibase64('image/svg+xml') }}; }
-i.d6          { mask-image: {{ "static/d6.svg" | ibase64('image/svg+xml') }}; scale(80%); }
+i.d6          { mask-image: {{ "static/d6.svg" | ibase64('image/svg+xml') }}; transform: scale(85%); }
 
 
 

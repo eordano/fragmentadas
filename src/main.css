@@ -68,16 +68,11 @@ i {
   mask-repeat: no-repeat;
   background-size: contain;
   background-color: currentColor;
-}
 
-i.disabled {
-  background-color: var(--gray-dark) !important;
+  &.disabled {
+    background-color: var(--gray-dark) !important;
+  }
 }
-
-.expand {
-  flex-grow: 1;
-}
-
 
 /* ---------------------------------------------------------------------------------------------- */
 
@@ -98,3 +93,8 @@ i.disabled {
   }
 }
 
+/* ---------------------------------------------------------------------------------------------- */
+
+.expand {
+  flex-grow: 1;
+}

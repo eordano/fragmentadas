@@ -1,0 +1,10 @@
+html {
+  background: {{ 'static/background.webp' | ibase64('image/webp') }} repeat;
+}
+
+i.arrow-left  { mask-image: {{ "static/arrow_left.svg" | ibase64('image/svg+xml') }}; }
+i.arrow-right { mask-image: {{ "static/arrow_right.svg" | ibase64('image/svg+xml') }}; }
+i.d6          { mask-image: {{ "static/d6.svg" | ibase64('image/svg+xml') }}; scale(80%); }
+
+
+

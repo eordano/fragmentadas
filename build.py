@@ -6,7 +6,13 @@
 # ]
 # ///
 
+# BUILD SCRIPT
+# For automatic dependency resolution, run with:
+#     uv run --script build.py
+
 import shutil
+import re
+import base64
 from pathlib import Path
 
 import markdown
@@ -15,14 +21,12 @@ from jinja2 import Environment, FileSystemLoader
 DIR_ROOT = Path(__file__).parent
 DIR_SRC = DIR_ROOT / "src"
 DIR_DIST = DIR_ROOT / "dist"
-DIR_TEMPLATES = DIR_SRC / "template"
-DIR_EPISODES = DIR_SRC / "episodes"
 
 
 def read_episodes():
     episodes = []
 
-    for path in DIR_EPISODES.glob("*.md"):
+    for path in (DIR_SRC / "episodes").glob("*.md"):
         if path.stem.startswith("_"): continue
         day = int(path.stem)
         content = markdown.markdown(path.read_text(encoding="utf-8").strip())
@@ -40,6 +44,13 @@ def write(target, content):
     print("Wrote", path.relative_to(Path.cwd()))
 
 
+def inline_css_base64(path, kind):
+    with open(DIR_SRC / path, 'rb') as f:
+        content = base64.b64encode(f.read()).decode('utf-8')
+        content = f"url('data:{kind};charset=utf-8;base64,{content}')"
+        return content
+
+
 def build():
     # Clean:
     if DIR_DIST.exists():
@@ -49,7 +60,9 @@ def build():
     episodes = read_episodes()
 
     # Templates:
-    env = Environment(loader=FileSystemLoader(DIR_TEMPLATES))
+    env = Environment(loader=FileSystemLoader(DIR_SRC))
+    env.filters['ibase64'] = inline_css_base64
+
     shared = {
         "episodes": [ep["day"] for ep in episodes],
     }

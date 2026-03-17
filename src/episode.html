@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block root %}
+<div>
+  <nav>
+    {% if prev is not none %}
+      <a class="button" href="/ep/{{ prev }}"><i class="arrow-left"></i></a>
+    {% else %}
+      <a class="button" href="/"><i class="arrow-left"></i></a>
+    {% endif %}
+
+    <a class="button" id="random"><i class="d6"></i></a>
+
+    {% if next is not none %}
+      <a class="button" href="/ep/{{ next }}"><i class="arrow-right"></i></a>
+    {% else %}
+      <a class="button disabled"><i class="arrow-right"></i></a>
+    {% endif %}
+
+    <span class="expand"></span>
+    <a href="/"><h1>Memorias Fragmentadas</h1></a>
+  </nav>
+
+  <article>
+    <h1>Día {{ day }}</h1>
+    <div class="content">{{ content }}</div>
+  </article>
+</div>
+{% endblock %}

@@ -5,5 +5,7 @@ window.addEventListener('load', function() {
     return EPISODES[Math.floor(Math.random() * EPISODES.length)]
   }
 
-  document.getElementById('random').setAttribute('href', '/ep/' + randomNext())
+  const random = document.getElementById('random')
+  random.setAttribute('href', '/ep/' + randomNext())
+  random.style.display = 'flex'
 })

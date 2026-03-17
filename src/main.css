@@ -7,7 +7,7 @@
 
 body {
   max-width: 640px;
-  margin: 40px auto;
+  margin: auto;
   padding: 0 16px;
   color: var(--text);
   font-family: "Inconsolata";
@@ -44,10 +44,9 @@ a {
 nav {
   display: flex;
   gap: 1rem;
-  margin-bottom: 3rem;
+  margin: 2.5rem 0;
 
   .button {
-    width: 2em;
     height: 2em;
   }
 
@@ -62,39 +61,17 @@ nav {
 
 /* ---------------------------------------------------------------------------------------------- */
 
-i {
-  display: inline-block;
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  background-size: contain;
-  background-color: currentColor;
-
-  &.disabled {
-    background-color: var(--gray-dark) !important;
-  }
-}
-
-/* ---------------------------------------------------------------------------------------------- */
-
 .button {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #343440;
   border-radius: 4px;
-
-  i {
-    width: 65%;
-    height: 65%;
-  }
+  padding: 0 1rem;
+  text-transform: uppercase;
 
   &.disabled {
     color: #777777;
   }
 }
 
-/* ---------------------------------------------------------------------------------------------- */
-
-.expand {
-  flex-grow: 1;
-}
